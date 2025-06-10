@@ -1,4 +1,4 @@
-name: Android Build\n\non:\n  push:\n    branches:\n      - main\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n\n    steps:\n      - uses: actions/checkout@v3\n
+name: Android Build\non:\n  push:\n    branches:\n      - main\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n\n    steps:\n      - uses: actions/checkout@v3\n
 
 
       - name: Set up JDK 17
@@ -30,7 +30,7 @@ name: Android Build\n\non:\n  push:\n    branches:\n      - main\n\njobs:\n  bui
         run: echo "Signing the APK..."
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-app
           path: my-softskills-app/android/app/build/outputs/apk/debug/app-debug.apk
