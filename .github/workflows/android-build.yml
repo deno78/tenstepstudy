@@ -39,8 +39,14 @@ jobs:
         run: npm test
 
       - name: Sign the APK
-        # Add your signing configuration here
-        # This is just a placeholder
+        # Add your signing configuration here. You will need to provide your keystore file and credentials.
+        # Example:
+        # uses: eskatos/android-signing@v1
+        # with:
+        #   keystore-file: ${{ secrets.KEYSTORE_FILE }}
+        #   alias: ${{ secrets.KEYSTORE_ALIAS }}
+        #   key-password: ${{ secrets.KEYSTORE_PASSWORD }}
+        #   store-password: ${{ secrets.KEYSTORE_STOREPASSWORD }}
         run: echo "Signing the APK..."
 
       - name: Upload APK
