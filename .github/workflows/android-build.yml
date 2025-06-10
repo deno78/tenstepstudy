@@ -32,7 +32,9 @@ jobs:
 
       - name: Build Android app
         working-directory: my-softskills-app
-        run: npx cap sync android
+        run: |
+          npx cap sync android
+          ls -l android/app/build/outputs/apk/debug/
 
       - name: Run tests
         working-directory: my-softskills-app
