@@ -1,3 +1,4 @@
+
 name: Android Build
 on:
   push:
@@ -32,7 +33,10 @@ jobs:
 
       - name: Build Android app
         working-directory: my-softskills-app
-        run: npx cap sync android
+        run: |
+          npm run build
+          npx cap sync android
+          ls -l android/app/build/outputs/apk/debug/
 
       - name: Run tests
         working-directory: my-softskills-app
@@ -54,5 +58,3 @@ jobs:
         with:
           name: android-app
           path: my-softskills-app/android/app/build/outputs/apk/debug/app-debug.apk
-
-
