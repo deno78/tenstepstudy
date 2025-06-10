@@ -35,8 +35,9 @@ jobs:
         working-directory: my-softskills-app
         run: |
           npm run build
-          npx cap sync android
+          echo "Build output:"
           ls -l android/app/build/outputs/apk/debug/
+          npx cap sync android
 
       - name: Run tests
         working-directory: my-softskills-app
