@@ -26,6 +26,10 @@ jobs:
         working-directory: my-softskills-app
         run: npm install
 
+      - name: Prepare Build Android app
+        working-directory: my-softskills-app
+        run: npm run build
+
       - name: Build Android app
         working-directory: my-softskills-app
         run: npx cap sync android
