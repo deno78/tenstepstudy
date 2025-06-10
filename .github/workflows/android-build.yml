@@ -1,0 +1,38 @@
+name: Android Build\n\non:\n  push:\n    branches:\n      - main\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n\n    steps:\n      - uses: actions/checkout@v3\n
+
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: my-softskills-app
+        run: npm install
+
+      - name: Build Android app
+        working-directory: my-softskills-app
+        run: npx cap sync android
+
+      - name: Run tests
+        working-directory: my-softskills-app
+        run: npm test
+
+      - name: Sign the APK
+        # Add your signing configuration here
+        # This is just a placeholder
+        run: echo "Signing the APK..."
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-app
+          path: my-softskills-app/android/app/build/outputs/apk/debug/app-debug.apk
+
+
