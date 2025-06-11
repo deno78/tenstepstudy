@@ -15,7 +15,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Set up Node.js
@@ -27,17 +27,21 @@ jobs:
         working-directory: my-softskills-app
         run: npm install
 
-      - name: Prepare Build Android app
+      - name: Build App
         working-directory: my-softskills-app
         run: npm run build
 
-      - name: Build Android app
+      - name: Sync Capacitor
         working-directory: my-softskills-app
-        run: |
-          npm run build
-          echo "Build output:"
-          ls -l android/app/build/outputs/apk/debug/
-          npx cap sync android
+        run: npx cap sync android
+
+      - name: Build Android APK
+        working-directory: my-softskills-app/android
+        run: ./gradlew assembleDebug
+
+      - name: List APK Contents
+        working-directory: my-softskills-app/android/app/build/outputs/apk/debug
+        run: ls -l
 
       - name: Run tests
         working-directory: my-softskills-app
